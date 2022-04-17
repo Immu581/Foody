@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <style>
+        #p1
+        {
+            width: 40%;
+            height: 90px;
+            padding-left: 30%;
+        }
+        .reg
+        {
+            padding: 5%;
+            margin-left: 40%;
+            font-size: x-large;
+        }
+        .reg form table tr td input
+        {
+            padding: 2%;
+            border-radius: 10px;
+            margin: 9px;
+        }
+        .image
+        {
+           margin-left: 5%;
+           margin-top: -45%;
+           width: 50px;
+           height: 300px;
+        }
+        #b1,#b2
+        {
+            text-align: center;
+            margin: 3%;
+            background: none;
+            border: 2px solid green;
+            border-radius: 10px;
+            outline: none;
+            height: 30px;
+            width:30%;
+        }
+        #b2
+        {
+            width: 18%;
+        }
+        #b1:hover,#b2:hover
+        {
+            background-color: green;
+            color: whitesmoke;
+            border-color: white;
+        }
+    </style>
+</head>
+<body>
+    <img id="p1" src="{% static 'images/title.jpg' %}">
+    <div class="reg">
+        <form action="register" method="post">
+            {% csrf_token %}
+            {% for message in messages %}
+                <p style="color:red;">{{ message }}</p>
+            {% endfor %}
+            <table>
+                <tr>
+                    <td><input type="text" name="firstname" placeholder="First Name" value="{{ first_name }}"></td>
+                    <td><input height="12%"type="text" name="lastname" placeholder="Last Name" value="{{ last_name }}"></td>
+                </tr>
+                <tr>
+                    <td><input type="username" name="username" placeholder="Username" value="{{ username }}"></td>
+                </tr>
+                <tr>
+                    <td><input type="email" name="emailid" placeholder="Email id" value="{{ emailid }}"></td>
+                </tr>
+                <tr>
+                    <td><input type="password" name="password1" placeholder="Password"></td>
+                </tr>
+                <tr>
+                    <td><input type="password" name="password2" placeholder="Re enter Password"></td>
+                </tr>
+                <tr>
+                    <td><textarea name="address" placeholder="Address:" rows="10" cols="50" value="{{ address }}"></textarea></td>
+                </tr>
+                <tr>
+                    <td><button id="b1" type="submit">Save & LogIn</button></td>
+                </tr>
+            </table>
+        </form>
+        <form action="/">
+            <button id="b2" type="submit">Cancel</button> 
+        </form>
+    </div>
+    <div class="image">
+        <img src="{% static 'images/welcome.jpg' %}" alt="image not found" width=430px height=130%>
+    </div>
+</body>
+</html>

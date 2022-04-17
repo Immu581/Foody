@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Foody</title>
+    <style>
+        .tab
+        {
+            width: 100%;
+           border: 1px solid black;
+           
+        }
+        .tab tr td img
+        {
+            width: 30%;
+            height: 35%;
+        } 
+        .tab tr td a,.tab tr td label
+        {
+            text-decoration: none;
+            color: green;
+            text-align: left;
+            font-family:sans-serif;   
+            font-size: 125%;
+        }
+        .tab tr td a:hover
+        {
+            color: rgb(195, 63, 63);
+            font-weight: 100px;
+        }
+        .forms{
+            
+            margin-top: 5%;
+            margin-left: 60%;
+            background-image: url("{% static 'images/back_login.png' %}");
+            background-size: 90% 90%;
+            height: 550%;
+        }
+        .forms fieldset table tr td
+        {
+            font-family:serif;
+            font-size: 100%;
+            margin: 10%;
+        }
+        .forms fieldset table tr td a
+        {
+            font-size:100%;
+            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-style: Verdana, Geneva, Tahoma, sans-serif;
+            cursor:pointer;
+        }
+        .forms fieldset table tr td input,.forms fieldset table tr td button
+        {
+            border-radius: 2;
+            background: none;
+            text-decoration: underline;
+            outline: none;
+            border: none;
+            font-size: 100%;
+            padding: 3%;
+        }
+        .forms fieldset table tr td button:hover
+        {
+            background: green;
+            text-decoration: none;
+            border: green;
+            color: white;
+            font-size: 130%;
+        }
+        .forms fieldset table tr td input:hover
+        {
+            background:blanchedalmond;
+            text-decoration: none;
+            border: white;
+            color: black;
+            font-size: 100%;
+        }
+        .addres
+        {
+            border: none;
+            padding: 5%;
+            size: 50% 50%;
+            float: right;
+            margin-right: 10%;
+            margin-top: -5%;
+            color:royalblue;
+        }
+        .addres h1{
+            font-weight: 500;
+            font-family:'Times New Roman', Times, serif;
+            font-style: italic;
+        }
+        .desc
+        {
+            height: 50%;
+            width: 50%;
+            float: left;
+            margin-top: -20%;
+            background-color: grey;            
+        }
+        .desc :hover
+        {
+            background-color: rgba(78, 58, 58, 0.726);
+        }
+        .desc h1, .desc blockquote h1{
+            color: white;
+            font-style: italic;
+            font-size: 30px;
+        }
+        .contacts 
+        {
+            float: right;
+            margin-right: -40%;
+            margin-top: 25%;
+            font-family: monospace;
+            font-size: x-large;
+            color:rgba(0, 0, 255, 0.671);
+        }
+    </style>
+</head>
+
+
+<body>
+    <table class="tab">
+        <tr>
+            <td><a href="login_admin"><img src="{% static 'images/foody.png' %}" width=35% height=35% alt="logo not found"></td>
+            <td><img src="{% static 'images/foody2.png' %}" alt="logo not found"></td>
+            <td><a href="login_super_admin"><img src="{% static 'images/title.jpg' %}" alt="title not found"></a></td>
+            <td><a href="#login">LogIn</a></td>
+            <td><a href="register">SignUp</a></td>
+            <td><label>Contact:+91 0123456789</label></td>
+        </tr>
+    </table>
+
+
+    <img class="photo" src="{% static 'images/welcome1.jpg' %}" alt="image not found" width=100%>
+
+
+    <div class="forms">
+        {% for message in messages %}
+            <p style="color:red">{{ message }}</p>
+        {% endfor %}
+        <form id="login" action="login" method='post'>
+            {% csrf_token %}
+            <fieldset>
+                <legend><img src="{% static 'images/login.jpg' %}" width=30% height=30% alt="logo not found"></legend>
+                <table>
+                    <tr>
+                        <td width=100%><input id="username" type="text" placeholder="Username" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td style="color:red; visibility:hidden"><label id="invaliduser">Invaid Username</label></td>
+                    </tr>
+                    <tr>
+                        <td width=100%><input id="password" type="password" placeholder="Password" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td style="color:red; visibility:hidden"><label id="invalidpassword">Invaid Password</label></td>
+                    </tr>
+                    <tr>
+                        <td><a href="forget_pass">Forgot Password?????</a></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">LogIn</button></td>
+                    </tr>
+                </table>
+        </fieldset>
+        </form>
+    </div>
+
+
+    <div class="addres">
+        <address>
+            <h1>Address:</h1>
+            <blockquote>
+                <h1>Foody,</h1>
+                <h1>Road No. 5</h1>
+                <h1>Raja Bahadur Street</h1>
+                <h1>Banjara Hills</h1>
+                <h1>California</h1>
+            </blockquote>
+        </address>
+    </div>
+    
+
+    <div class="contacts">
+        <h2>Contacts:</h2>
+        <quote>+91 0123456789,</quote>
+        <quote>+91 9876543210,</quote>
+        <quote>+91 123654789</quote>
+
+
+    </div>
+
+
+    <div class="desc">
+        <h1>ABOUT FOODY:
+            <blockquote>
+                <h1>our's is the best rated restaurent in the world.</h1>
+                <h1>you will believe it when you order something in our foody</h1>   
+                <h1>our beloved chefs are Mrs.Pankaj, Mr.Kunal Mr.VikasKhanna</h1>
+                <h1>They are winner and judges of masterchef </h1>
+                <h1>masterchef is India's best cooking reality show</h1>
+                <h1>They have immense knowledge on delicious food</h1>
+                <quote>"enjoy your day with our delicious food"</quote>  <br>
+                <quote>"Lots of smilesssssssssss"</quote>   
+                <h1 style="color: red">Can you read thiss</h1> 
+                <quote><bdo dir="rtl">$$$$$$$Ye$$s $I$ Can $$$$Read $Thi$s$$$$</bdo></quote>  
+                <h1 style="color: green">Hu hUhhh HuRreY!!!!!!!!!!</h1> 
+            </blockquote>
+        </h1>
+    </div>
+</body>
+</html>

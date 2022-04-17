@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super_admin</title>
+    <style>
+        #p1
+        {
+            width: 40%;
+            height: 90px;
+            padding-left: 30%;
+        }
+        .forms
+        {
+            position: fixed;
+            left: 50%;
+            top: 30%;
+        }
+        .forms form table tr td input
+        {
+            margin: 5%;
+            outline: none;
+            border-color: rgb(200, 77, 77);
+            border-radius: 35px;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }
+        button
+        {
+            border-radius: 35px;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+            outline: none;
+            background: none;
+            color: green;
+            border-color: green;
+        }
+        button:hover
+        {
+            border-color: green;
+            color: rgb(200, 77, 77);
+        }
+        .forms form table tr td p
+        {
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <img id="p1" src="{% static 'images/title.jpg' %}" alt="logo not found">
+    <div class="forms">
+        <form action="super_admin" method="post">
+            {% csrf_token %}
+            {% for message in messages %}
+                <p style="color:red">{{ message }}</p>
+            {% endfor %}
+            <table>
+                <tr>
+                    <td><p>enter name of admin</p></td>
+                    <td><input type="text" name="username" placeholder="abc"></td>
+                </tr>
+                <tr>
+                    <td><p>enter password of admin</p></td>
+                    <td><input type="password" name="password" placeholder="abc"></td>
+                </tr>
+                <tr> 
+                    <td><button style="width: 90%; height: 5%;">save</button></td>
+                </tr>
+            </table>
+        </form>
+        <form class="forms2" action="/">
+            <button style="width: 50%; height: 5%;">Cancel</button>
+        </form>
+    </div>
+    <div class="image">
+        <img style="margin-left: 5%;height: 450px; width: 40%;" src="{% static 'images/welcome.jpg' %}" alt="image not found">
+    </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Bill</title>
+    <style>
+        table
+        {
+            position: absolute;
+            left: 25%;
+            top: 1%;
+        }
+        table tr th ,table
+        {
+            height:5px;
+            border:2px solid green;
+            border-collapse: collapse;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }
+        #l1
+        {
+            position: fixed;
+            left: 2%;
+            top: 2px;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }
+        #l2
+        {
+            position: fixed;
+            right: 2%;
+            top: 2px;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }
+        .down
+        {
+            position: fixed;
+            right: 6%;
+            bottom: 3%;
+        }
+        .down li form button
+        {
+            width: 100%;
+            height: 35px;
+            border-radius: 10px;
+            border-color: green;
+            background-color: white;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }
+        .down li form button:hover
+        {
+            color: rgb(200, 77, 77);
+        }
+        .table
+        {
+            position: centre;
+        }
+        .table table tr th
+        {
+            border-color: green;
+        }
+        #l3
+        {
+            color: blue;
+            margin-top: 45%;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!--<p id="l1">name</p>
+    <p id="l2">emailid</p>-->
+    <div>
+        <form method="post">
+        <div class="table">
+        <table>
+            <tr>
+                <th><img src="{% static 'images/foody.png' %}" alt="image not found"></th>
+                <th><p>Item Name</p></th>
+                <th><p>Cost Of Each Item</p></th>
+                <th><p>Quantity</p></th>
+                <th><p>Total cost</p></th>
+            </tr>
+            <!--fkjdfhkjsdhfk-->
+            {% for i in orders_veg %}
+                <tr>
+                    {% if i.quantity %}
+                        <th>{{ i.img }}</th>
+                        <th>{{ i.name }}</th>
+                        <th>{{ i.cost }}</th>
+                        <th>{{ i.quantity }}</th>
+                        <th>{{ i.total }}</th>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            {% for i in orders_non_veg %}
+                <tr>
+                    {% if i.quantity %}
+                    <th>{{ i.img }}</th>
+                    <th>{{ i.name }}</th>
+                    <th>{{ i.cost }}</th>
+                    <th>{{ i.quantity }}</th>
+                    <th>{{ i.total }}</th>
+                {% endif %}
+                </tr>
+            {% endfor %}
+            {% for i in orders_snacks %}
+                <tr>
+                    {% if i.quantity %}
+                    <th>{{ i.img }}</th>
+                    <th>{{ i.name }}</th>
+                    <th>{{ i.cost }}</th>
+                    <th>{{ i.quantity }}</th>
+                    <th>{{ i.total }}</th>
+                {% endif %}
+                </tr>
+            {% endfor %}
+            {% for i in orders_soft_drinks %}
+                <tr>
+                    {% if i.quantity %}
+                    <th>{{ i.img }}</th>
+                    <th>{{ i.name }}</th>
+                    <th>{{ i.cost }}</th>
+                    <th>{{ i.quantity }}</th>
+                    <th>{{ i.total }}</th>
+                {% endif %}
+                </tr>
+            {% endfor %}
+            <!--kfjdksfhkshfk-->
+        </table>
+        {% for message in messages %}
+            <p id="l3" style="color:blue">{{ message }}</p>
+        {% endfor %}
+        </div>
+        </form>
+    </div>
+    <ul type="none" class="down">
+            <li>
+                <form action="thanq">
+                    <button>Confirm Order</button>
+                </form>
+            </li>
+            <li>
+                <form action="change_order">
+                    <button>Change Order</button>
+                </form>
+            </li>
+            <li>
+                <form action="cancel">
+                    <button>Cancel Order(s)</button>
+                </form>
+            </li>
+    </ul>
+</body>
+</html>

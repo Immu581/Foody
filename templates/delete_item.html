@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Item</title>
+    <style>
+        #p1
+        {
+            width: 40%;
+            height: 90px;
+            padding-left: 30%;
+        }
+        .block
+        {
+            margin-left: 40%;
+            margin-top: 5%;
+        }
+        .block form table tr td
+        {
+            padding: 2%;
+            
+        }
+        .block form table tr td p,.block form table tr td input
+        {
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+            border-radius: 25px;
+        }
+        button
+        {
+            border-radius: 25px;
+            background: none;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+            color: green;
+        }
+        button:hover
+        {
+            color: rgb(200, 77, 77)
+        }
+    </style>
+</head>
+<body>
+    <img id="p1" src="{% static 'images/title.jpg' %}">
+    <div class="block">
+        <form action="delete_item" method="post">
+            {% csrf_token %}
+            {% for message in messages %}
+                <p style="color:red">{{ message }}</p>
+            {% endfor %}
+        <table>
+            <tr>
+                <td><p>enter category of item:</p></td>
+                <td><input type="text" name="category" placeholder="abc"></td>
+            </tr>
+            <tr>
+                <td><p>enter item name:</p></td>
+                <td><input type="text" name="name" placeholder="xyz"></td>
+            </tr>
+            <tr>
+                <td><button style="width:100%;">Delete</button></td>
+            </tr>
+        </table>
+        </form>
+        <form action="/">
+            <button style="width:20%;margin-left:1%">Cancel</button>
+        </form>
+    </div>
+</body>
+</html>

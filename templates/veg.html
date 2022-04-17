@@ -1,0 +1,237 @@
+{% load static %}
+{% static "images" as base %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veg</title>
+    <style>
+        body
+        {
+            background-image: url("{% static 'images/back_in_menu.jpg' %}") ;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-attachment: fixed;
+    }
+.category
+{
+    position: fixed;
+    left: 8%;
+    background-color: white;
+    width: 90%;
+}
+.category table tr td a
+{
+    text-decoration: none;
+    color: white;
+    font-style: italic;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    padding-top: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+		.cart-page{
+			margin: 80px auto;
+		}
+		table{
+			width:100%;
+			border-collapse: collapse;
+		}
+
+		th{
+			text-align: left;
+			padding: 5px;
+			color:white;
+			background: green;
+			font: normal;
+		}
+		td{
+			padding: 10px 5px;
+		}
+		td input{
+			padding: 5px;
+		}
+		.cart-info
+		{
+			padding-left: 10%;
+			padding-top: 3%;
+		}
+		.small-container-cart-page
+		{
+			font-style: italic;
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 20px;
+			padding: 5%;
+		}
+		.down
+		{
+			position: fixed;
+			bottom: 5%;
+			width:99%;
+		}
+
+		.down tr td input,.down tr td button
+		{
+			width: 100%;
+			height: 35px;
+			border-radius: 10px;
+			border-color: green;
+			background-color: white;
+			font-style: italic;
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 20px;
+		}
+		.down tr td input:hover
+		{
+			color: rgb(200, 77, 77);
+		}
+		.warn
+		{
+			position: fixed;
+			bottom: 10%;
+			right: 5%;
+			color: red;
+			font-style: italic;
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 30px;
+		}
+        .menu
+        {
+            float:right;
+            margin-top: 5%;
+        }
+        </style>
+</head>
+<body>
+  <!--  <form id="search" action="">
+    <input type="text"  name="find" placeholder="Search">
+    <button>Search</button>-->
+
+    <div class="category">
+        <table>
+            <tr>
+                <td style="width:250px; height:15%;"><a style="color: rgb(200, 77, 77)" href="veg">Veg</a></td>
+                <td style="width:250px; height:15%;"><a style="color: green" href="non_veg">Non-Veg</a></td>
+                <td style="width:250px; height:15%;"><a style="color: green" href="snacks">Snacks</a></td>
+                <td style="width:250px; height:15%;"><a style="color: green" href="soft_drinks">Soft Drinks</a></td>
+            </tr>
+        </table>
+    </div>
+<!--  <div class="item">
+        {% for obj in objs %}
+        <table>
+            <tr><td>
+                <li><img style="width:15%;height:15%;" src="{{ base }}/{{ obj.img }}" alt="image not found"></li>
+                <li><p style="color:green;font-size:250%;">{{ obj.name }}</p></li>
+            </tr></td>
+            <tr><td><input style="margin-top:-100%;margin-left:80%" type="text", name=list></td></tr>
+        </table>
+        <tr><p style="margin-left:10%;color:rgb(200, 77, 77);font-size:200%;">cost of 1 {{ obj.name }} is {{ obj.cost }}$</p></tr>
+        <hr style="color:wheat">
+        {% endfor %}
+    </div>
+</div>
+<div class="heading">
+    <table>
+    <tr>
+        <th>Food</th>
+        <th>Food Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    </table>
+</div>-->
+<form method="post">
+    <div class="small-container-cart-page">
+  <!--<input style="width:50%" type="text" placeholder="enter quantity" value="{{ obj1 }}" name="order_id">-->
+        <table>
+            {% csrf_token %}
+            {% for obj in objs %}
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="{{ base }}/{{ obj.img }}" alt="image not found" style="width:100px;height:100px;">
+                    </div>
+                </td>
+                <td><b>{{ obj.name }}</b></td>
+                <td>{{ obj.cost }}$</td>
+                <td><input style="width:50%" type="text" placeholder="enter quantity" value="{{ obj.quantity }}" name="{{ obj.id }}"></td>
+            </tr>
+            {% endfor %}
+
+
+       <!-- <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/soup.jpg' %}" alt="image not found" style="width:100px;height:100px;">
+                </div>
+            </td>
+            <td><b>soup</b></td>
+            <td>40$</td>
+            <td><input style="width:50%" type="text" placeholder="enter quantity" value=0 name='item1'></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/dosa.jpg' %}" alt="image not found" style="width:100px;height:100px;">
+                </div>
+            </td>
+            <td><b>dosa</b></td>
+            <td>30$</td>
+            <td><input style="width:50%" type="text" placeholder="enter quantity" value=0 name="item2"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/pizza.jpg' %}" alt="image not found" style="width:100px;height:100px;">
+                </div>
+            </td>
+            <td><b>pizza</b></td>
+            <td>150$</td>
+            <td><input style="width:50%" type="text" placeholder="enter quantity" value=0 name="item3"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/noodles.jpg' %}" alt="image not found" style="width:100px;height:100px;">
+                </div>
+            </td>
+            <td><b>noodles</b></td>
+            <td>50$</td>
+            <td><input style="width:50%" type="text" placeholder="enter quantity" value=0 name="item4"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'images/pasta.jpg' %}" alt="image not found" style="width:100px;height:100px;">
+                </div>
+            </td>
+            <td><b>pasta</b></td>
+            <td>50$</td>
+            <td><input style="width:50%" type="text" placeholder="enter quantity" value=0 name='item5'></td>
+        </tr>
+        <div class="menu">
+            <label>enter your order here ex: chicken=1,mutton=2,....etc</label>
+            <textarea cols="35" rows="15" placeholder="enter your items"></textarea>
+        </div>-->
+    </table>
+    
+    </div>
+    <p class="warn">Please click save order before navigating to another categery</p>
+   <table class="down">
+       <tr>
+            <td>
+                    <button method="post"><a ref="non_veg">Save order</a></button>
+            </td>
+            <td>
+                <button><a href="/">Cancel & Logout</a></button>
+               <!-- <input type="button" value="Cancel & Logout" onclick="window.location.href='/'" />-->
+            </td>
+       </tr>
+   </table>
+</form>
+</body>
+</html>

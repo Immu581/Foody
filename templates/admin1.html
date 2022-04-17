@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <style>
+        #p1
+        {
+            width: 40%;
+            height: 90px;
+            padding-left: 30%;
+        }
+        .buttons
+        {
+            position: fixed;
+            right: 40%;
+            top: 40%;
+        }
+        .buttons table tr td button
+        {
+            border-radius: 35px;
+            font-style: italic;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+            outline: none;
+            background: none;
+            color: green;
+            border-color: green;
+        }
+        .buttons table tr td button:hover
+        {
+            border-color: green;
+            color: rgb(200, 77, 77);
+        }
+    </style>
+</head>
+<body>
+    <img id="p1" src="{% static 'images/title.jpg' %}" alt="logo not found">
+    <div class="buttons">
+        <table>
+            <tr>
+                <td><form action="add_item">
+                    <button style= "width:100%; height: 60%;">add item</button>
+                </form></td>
+            </tr>
+            <tr>
+                <td><form action="delete_item">
+                    <button style= "width:100%; height: 60%;">delete item</button>
+                </form></td>
+            </tr>
+            <tr>
+                <td><form action="change">
+                    <button style="height: 60%;">change cost of item</button>
+                </form></td>
+            </tr>
+            <tr>
+                <td><form action="/">
+                    <button style="width:100%; height: 60%;">Logout</button>
+                </form></td>
+            </tr>
+        </table>
+    </div>
+    <div class="image">
+        <img style="margin-left: 5%;height: 450px; width: 40%;" src="{% static 'images/welcome.jpg' %}" alt="image not found">
+    </div>
+</body>
+</html>
